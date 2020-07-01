@@ -1,10 +1,15 @@
 import express, {Request, Response} from 'express';
+import {GithubHook} from "../github/github.domain";
 
-const router = express.Router();
+const hookRouter = express.Router();
 
-router.post('/api/github/hook', (req: Request, res: Response) => {
-  console.log(req.body);
-  res.send('success');
+hookRouter.post('/api/github/hook', (request: Request, response: Response) => {
+  const header = request.header;
+  const payload: GithubHook = request.body;
+  console.log(header);
+  response.send('success');
 })
 
-export default router;
+export {
+  hookRouter
+};
