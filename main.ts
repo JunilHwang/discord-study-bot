@@ -1,4 +1,5 @@
-import express, {Request, Response} from 'express';
+import express from 'express';
+import hookRouter from '@/hook/hook.router';
 
 const app = express();
 
@@ -8,10 +9,7 @@ app.get('/', (req, res) => {
   res.send('hello');
 })
 
-app.post('/api/github/hook', (req: Request, res: Response) => {
-  console.log(req.body);
-  res.send('success');
-})
+app.use(hookRouter);
 
 app.listen(3000, () => {
   console.log('server start: http://localhost:3000');
