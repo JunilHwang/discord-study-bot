@@ -1,4 +1,4 @@
-import {GithubRepository, Pusher, Sender, Commit, PullRequest} from "./base";
+import {GithubRepository, Pusher, Sender, Commit, PullRequest, Review, GithubComment} from "./base";
 
 export interface GithubPushHook {
   ref: string;
@@ -16,10 +16,26 @@ export interface GithubPushHook {
   head_commit: Commit;
 }
 
-export interface GithubPullRequestHook {
-  action: string
-  number: number,
-  pull_request: PullRequest,
-  repository: GithubRepository,
-  sender: Sender
+export interface GithubPRHook {
+  action: string;
+  number: number;
+  pull_request: PullRequest;
+  repository: GithubRepository;
+  sender: Sender;
+}
+
+export interface GithubPRReviewHook {
+  action: string;
+  review: Review;
+  pull_request: PullRequest;
+  repository: GithubRepository;
+  sender: Sender;
+}
+
+export interface GithubPRReviewCommentHook {
+  action: string;
+  comment: GithubComment,
+  pull_request: PullRequest;
+  repository: GithubRepository;
+  sender: Sender;
 }

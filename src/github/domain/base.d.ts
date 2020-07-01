@@ -153,3 +153,39 @@ export interface PullRequest {
   created_at: string;
   updated_at: string;
 }
+
+export interface Review {
+  id: number;
+  node_id: string;
+  user: GithubUser;
+  body: string;
+  commit_id: string;
+  submitted_at: string;
+  html_url: string;
+}
+
+export interface GithubComment {
+  url: string;
+  pull_request_review_id: number;
+  id: number;
+  node_id: string;
+  diff_hunk: string;
+  path: string;
+  position: number;
+  original_position: number;
+  commit_id: string;
+  original_commit_id: string;
+  user: GithubUser;
+  body: string;
+  created_at: string;
+  updated_at: string;
+  html_url: string;
+  pull_request_url: string;
+  author_association: string;
+  start_line: number;
+  original_start_line: number;
+  start_side: string;
+  line: number;
+  original_line: number;
+  side: string;
+}
