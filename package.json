@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/JunilHwang/discord-study-bot#readme",
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
   },
   "dependencies": {
     "axios": "^0.19.2",
