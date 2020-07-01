@@ -1,5 +1,5 @@
 import express, {Request, Response} from 'express';
-import {GithubHook} from "../github/github.domain";
+import { GithubHook } from "../github/github.domain";
 
 const hookRouter = express.Router();
 

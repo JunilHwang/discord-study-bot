@@ -2,10 +2,24 @@
   "name": "discord-study-bot",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
-  "main": "main.ts",
+  "main": "src/main.ts",
   "scripts": {
-    "start": "node --loader ts-node/esm.mjs main.ts"
+    "start": "ts-node ./src/main.ts",
+    "start:watch": "nodemon",
+    "build": "tsc"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm start",
+    "ext": "ts"
   },
   "repository": {
     "type": "git",
