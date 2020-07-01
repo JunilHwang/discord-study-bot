@@ -2,9 +2,10 @@
   "name": "discord-study-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "main": "main.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --loader ts-node/esm.mjs main.ts"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/JunilHwang/discord-study-bot#readme",
   "devDependencies": {
+    "@types/express": "^4.17.6",
+    "@types/node": "^14.0.14",
     "nodemon": "^2.0.4",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.5"
