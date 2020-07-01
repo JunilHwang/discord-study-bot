@@ -144,8 +144,8 @@ export interface PullRequest {
   id: number;
   node_id: string;
   html_url: string;
-  diff_url: "https://github.com/JunilHwang/discord-study-bot/pull/1.diff";
-  patch_url: "https://github.com/JunilHwang/discord-study-bot/pull/1.patch";
+  diff_url: string;
+  patch_url: string;
   number: number;
   title: string;
   user: GithubUser;
@@ -188,4 +188,27 @@ export interface GithubComment {
   line: number;
   original_line: number;
   side: string;
+}
+
+export interface GithubIssue {
+  url: string;
+  repository_url: string;
+  labels_url: string;
+  comments_url: string;
+  events_url: string;
+  html_url: string;
+  id: number;
+  node_id: string;
+  number: number;
+  title: string;
+  user: GithubUser;
+  labels: string[];
+  state: string;
+  locked: boolean;
+  assignees: string[];
+  comments: number;
+  created_at: string;
+  updated_at: string;
+  author_association: string;
+  body: string;
 }
