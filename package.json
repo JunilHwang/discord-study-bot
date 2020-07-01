@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/JunilHwang/discord-study-bot/issues"
   },
-  "homepage": "https://github.com/JunilHwang/discord-study-bot#readme"
+  "homepage": "https://github.com/JunilHwang/discord-study-bot#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1"
+  }
 }
