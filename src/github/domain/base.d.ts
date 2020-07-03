@@ -1,19 +1,3 @@
-export interface GithubHook {
-  ref: string;
-  before: string;
-  after: string;
-  repository: GithubRepository;
-  pusher: Pusher;
-  sender: Sender;
-  created: boolean;
-  deleted: boolean;
-  forced: boolean;
-  base_ref?: string;
-  compare: string;
-  commits: Commit[];
-  head_commit: Commit;
-}
-
 export interface GithubRepository {
   id: number;
   node_id: string;
@@ -154,4 +138,77 @@ export interface Commit {
   added: string[]
   removed: string[]
   modified: string[]
+}
+
+export interface PullRequest {
+  id: number;
+  node_id: string;
+  html_url: string;
+  diff_url: string;
+  patch_url: string;
+  number: number;
+  title: string;
+  user: GithubUser;
+  body: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Review {
+  id: number;
+  node_id: string;
+  user: GithubUser;
+  body: string;
+  commit_id: string;
+  submitted_at: string;
+  html_url: string;
+}
+
+export interface GithubComment {
+  url: string;
+  pull_request_review_id: number;
+  id: number;
+  node_id: string;
+  diff_hunk: string;
+  path: string;
+  position: number;
+  original_position: number;
+  commit_id: string;
+  original_commit_id: string;
+  user: GithubUser;
+  body: string;
+  created_at: string;
+  updated_at: string;
+  html_url: string;
+  pull_request_url: string;
+  author_association: string;
+  start_line: number;
+  original_start_line: number;
+  start_side: string;
+  line: number;
+  original_line: number;
+  side: string;
+}
+
+export interface GithubIssue {
+  url: string;
+  repository_url: string;
+  labels_url: string;
+  comments_url: string;
+  events_url: string;
+  html_url: string;
+  id: number;
+  node_id: string;
+  number: number;
+  title: string;
+  user: GithubUser;
+  labels: string[];
+  state: string;
+  locked: boolean;
+  assignees: string[];
+  comments: number;
+  created_at: string;
+  updated_at: string;
+  author_association: string;
+  body: string;
 }
