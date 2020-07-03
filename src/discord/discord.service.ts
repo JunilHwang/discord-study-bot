@@ -8,7 +8,7 @@ export class DiscordService {
   private readonly headers: { [k: string]: string };
 
   constructor() {
-    this.channelURL = DISCORD_API_URL + '/channels/728516777562079244';
+    this.channelURL = DISCORD_API_URL + '/channels/728575145236758558';
     this.headers = {
       'Authorization': `Bot ${token}`
     };
