@@ -6,6 +6,12 @@
     "type": "git",
     "url": "git+https://github.com/JunilHwang/discord-study-bot.git"
   },
+  "scripts": {
+    "forever:prod": "forever nestjs/dist/main"
+  },
+  "dependencies": {
+    "forever": "^3.0.0"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
