@@ -18,4 +18,4 @@ class DiscordService {
   }
 }
 
-export default new DiscordService();
+export const discordService: DiscordService = new DiscordService();
