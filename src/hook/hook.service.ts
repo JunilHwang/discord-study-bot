@@ -33,9 +33,9 @@ export class HookService {
     const data: GithubPushHook = body as GithubPushHook;
     const message: string = [
       `[저장소에 푸쉬 발생]`,
-      `Repository: ${data.repository.name}`,
-      `url: ${data.repository.html_url}`,
-      `pusher: ${data.pusher.name}(${data.pusher.email})`,
+      `Repository: __**${data.repository.name}**__`,
+      `url: __**${data.repository.html_url}**__`,
+      `pusher: __**${data.pusher.name}(${data.pusher.email})**__`,
       `\n[커밋정보]`,
       data.commits.map(commit => `${commit.message}        ${commit.timestamp}`).join('\n'),
     ].join('\n');
@@ -45,13 +45,12 @@ export class HookService {
   createPRMessage (body: any) {
     const data: GithubPRHook = body as GithubPRHook;
     const message: string = [
-      `////////////////////`,
       `[Pull Request]`,
-      `action: ${data.action}`,
-      `url: ${data.pull_request.html_url}`,
+      `action: __**${data.action}**__`,
+      `url: __**${data.pull_request.html_url}**__`,
       `--------------------------`,
-      `# ${data.pull_request.title}`,
-      `\n${data.pull_request.body}\n`,
+      `__**${data.pull_request.title}**__`,
+      `${data.pull_request.body}`,
       `--------------------------`,
       `created_at: ${data.pull_request.created_at}`,
     ].join('\n');
@@ -61,13 +60,12 @@ export class HookService {
   createPRReviewMessage (body: any) {
     const data: GithubPRReviewHook = body as GithubPRReviewHook;
     const message: string = [
-      `////////////////////`,
-      `[Pull Request]`,
-      `action: ${data.action}`,
-      `url: ${data.pull_request.html_url}`,
-      `created_at: ${data.pull_request.created_at}`,
+      `[Pull Request Review]`,
+      `action: __**${data.action}**__`,
+      `url: __**${data.pull_request.html_url}**__`,
+      `created_at: __**${data.pull_request.created_at}**__`,
       `[Review]`,
-      `reviewer: ${data.review.user.login}`,
+      `reviewer: __**${data.review.user.login}**__`,
       data.review.body,
     ].join('\n');
     return discordService.sendMessage(message);
@@ -76,13 +74,12 @@ export class HookService {
   createPRReviewCommentMessage (body: any) {
     const data: GithubPRReviewCommentHook = body as GithubPRReviewCommentHook;
     const message: string = [
-      `////////////////////`,
-      `[Pull Request]`,
-      `action: ${data.action}`,
-      `url: ${data.pull_request.html_url}`,
-      `created_at: ${data.pull_request.created_at}`,
+      `[Pull Request Review Comment]`,
+      `action: __**${data.action}**__`,
+      `url: __**${data.pull_request.html_url}**__`,
+      `created_at: __**${data.pull_request.created_at}**__`,
       `[Comment]`,
-      `writer: ${data.comment.user.login}`,
+      `writer: __**${data.comment.user.login}**__`,
       data.comment.body
     ].join('\n');
     return discordService.sendMessage(message);
@@ -91,12 +88,11 @@ export class HookService {
   createIssueMessage (body: any) {
     const data: GithubIssueHook = body as GithubIssueHook;
     const message: string = [
-      `////////////////////`,
       `[Issue]`,
-      `action: ${data.action}`,
-      `writer: ${data.issue.user.login}`,
-      `created_at: ${data.issue.created_at}`,
-      `url: ${data.issue.html_url}`,
+      `action: __**${data.action}**__`,
+      `writer: __**${data.issue.user.login}**__`,
+      `created_at: __**${data.issue.created_at}**__`,
+      `url: __**${data.issue.html_url}**__`,
       data.issue.body,
     ].join('\n');
     return discordService.sendMessage(message);
@@ -105,11 +101,10 @@ export class HookService {
   createIssueCommentMessage (body: any) {
     const data: GithubIssueCommentHook = body as GithubIssueCommentHook;
     const message: string = [
-      `////////////////////`,
       `[Issue Comment]`,
-      `writer: ${data.comment.user.login}`,
-      `created_at: ${data.comment.created_at}`,
-      `url: ${data.comment.html_url}`,
+      `writer: __**${data.comment.user.login}**__`,
+      `created_at: __**${data.comment.created_at}**__`,
+      `url: __**${data.comment.html_url}**__`,
       data.comment.body,
     ].join('\n');
     return discordService.sendMessage(message);
