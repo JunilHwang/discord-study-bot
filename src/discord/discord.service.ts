@@ -5,6 +5,7 @@ const DISCORD_API_URL = 'https://discord.com/api/v6';
 
 class DiscordService {
   private readonly channelURL: string;
+  private readonly headers: { [k: string]: string };
 
   constructor() {
     this.channelURL = DISCORD_API_URL + '/channels/728516777562079244';
@@ -13,7 +14,7 @@ class DiscordService {
     };
   }
 
-  sendMessage(content) {
+  sendMessage (content: string) {
     try {
       const {channelURL, headers} = this;
       const requestBody = {content, tts: false};
