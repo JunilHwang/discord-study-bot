@@ -7,7 +7,9 @@
     "url": "git+https://github.com/JunilHwang/discord-study-bot.git"
   },
   "scripts": {
-    "forever:prod": "forever nestjs/dist/main"
+    "build": "cd nestjs && nest build",
+    "forever:prod": "forever start nestjs/dist/main.js",
+    "forever:build:prod": "cd nestjs && nest build && forever nestjs/dist/main.js"
   },
   "dependencies": {
     "forever": "^3.0.0"
