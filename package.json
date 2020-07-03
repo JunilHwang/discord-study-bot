@@ -8,7 +8,7 @@
     "start:watch": "nodemon",
     "start:prod": "node ./dist/main.js",
     "build": "tsc",
-    "forever:prod": "node ./dist/main.js"
+    "forever:prod": "forever start ./dist/main.js"
   },
   "nodemonConfig": {
     "ignore": [
