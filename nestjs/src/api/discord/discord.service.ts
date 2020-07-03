@@ -1,5 +1,5 @@
 import {token} from './discord.secret';
-import $http from 'axios';
+import $http, {AxiosResponse} from 'axios';
 import {Injectable} from "@nestjs/common";
 
 const DISCORD_API_URL = 'https://discord.com/api/v6';
@@ -13,7 +13,7 @@ export class DiscordService {
 
   constructor() {}
 
-  sendMessage (content: string) {
+  public sendMessage (content: string): Promise<AxiosResponse|null> {
     try {
       const {channelURL, headers} = this;
       const requestBody = {content, tts: false};
