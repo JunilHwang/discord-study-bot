@@ -21,8 +21,12 @@ export class HookService {
     };
     const method: Function|undefined = types[type];
     if (method === undefined) return;
-
-    method(body);
+    try {
+      method(body)
+        .catch((e: any) => { throw e; })
+    } catch (e) {
+      console.error('HookService.selectHookType()', e);
+    }
   }
 
   createPushMessage (body: any) {

@@ -17,7 +17,6 @@ export class DiscordService {
   sendMessage (content: string) {
     try {
       const {channelURL, headers} = this;
-      console.log(headers);
       const requestBody = {content, tts: false};
       const url = `${channelURL}/messages`;
       return axios.post(url, requestBody, { headers })
