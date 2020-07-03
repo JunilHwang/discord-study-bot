@@ -6,7 +6,9 @@
   "scripts": {
     "start": "ts-node ./src/main.ts",
     "start:watch": "nodemon",
-    "build": "tsc"
+    "start:prod": "node ./dist/main.js",
+    "build": "tsc",
+    "forever:prod": "node ./dist/main.js"
   },
   "nodemonConfig": {
     "ignore": [
@@ -41,6 +43,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "forever": "^3.0.0"
   }
 }
