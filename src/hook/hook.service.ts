@@ -27,7 +27,15 @@ export class HookService {
 
   createPushMessage (body: any) {
     const data: GithubPushHook = body as GithubPushHook;
-    return discordService.sendMessage('createPushMessage');
+    const message: string = [
+      `[기본정보]`,
+      `Repository: ${data.repository.name}`,
+      `url: ${data.repository.html_url}`,
+      `pusher: ${data.pusher.name}(${data.pusher.email})`,
+      `[커밋정보]`,
+      data.commits.map(commit => `${commit.message} ${commit.timestamp}`).join('\n'),
+    ].join('\n');
+    return discordService.sendMessage(message);
   }
 
   createPRMessage (body: any) {
