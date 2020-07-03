@@ -10,16 +10,18 @@ class DiscordService {
   constructor() {
     this.channelURL = DISCORD_API_URL + '/channels/728516777562079244';
     this.headers = {
-      Authorization: `Bot ${token}`
+      'Authorization': `Bot ${token}`
     };
   }
 
   sendMessage (content: string) {
     try {
       const {channelURL, headers} = this;
+      console.log(headers);
       const requestBody = {content, tts: false};
       const url = `${channelURL}/messages`;
-      return axios.post(url, requestBody, {headers});
+      return axios.post(url, requestBody, { headers })
+                  .catch(e => { throw e });
     } catch (e) {
       console.error('DiscordService.sendMessage()', e);
       return Promise.resolve(null);
