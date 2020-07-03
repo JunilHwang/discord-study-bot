@@ -71,12 +71,31 @@ export class HookService {
 
   createPRReviewCommentMessage (body: any) {
     const data: GithubPRReviewCommentHook = body as GithubPRReviewCommentHook;
-    return discordService.sendMessage('createPRReviewCommentMessage');
+    const message: string = [
+      `////////////////////`,
+      `[Pull Request]`,
+      `action: ${data.action}`,
+      `url: ${data.pull_request.html_url}`,
+      `created_at: ${data.pull_request.created_at}`,
+      `[Comment]`,
+      `writer: ${data.comment.user.login}`,
+      data.comment.body
+    ].join('\n');
+    return discordService.sendMessage(message);
   }
 
   createIssueMessage (body: any) {
     const data: GithubIssueHook = body as GithubIssueHook;
-    return discordService.sendMessage('createIssueMessage');
+    const message: string = [
+      `////////////////////`,
+      `[Issue]`,
+      `action: ${data.action}`,
+      `writer: ${data.issue.user.login}`,
+      `created_at: ${data.issue.created_at}`,
+      `url: ${data.issue.html_url}`,
+      data.issue.body,
+    ].join('\n');
+    return discordService.sendMessage(message);
   }
 
   createIssueCommentMessage (body: any) {
