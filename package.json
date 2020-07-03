@@ -13,5 +13,5 @@
   },
   "homepage": "https://github.com/JunilHwang/discord-study-bot#readme",
   "private": true,
-  "workspaces": ["express", "nestjs"]
+  "workspaces": ["express", "nestjs", "domain"]
 }

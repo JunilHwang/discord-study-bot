@@ -6,7 +6,7 @@ import {
   GithubPRReviewCommentHook,
   GithubPRReviewHook,
   GithubPushHook
-} from "../github/domain";
+} from "domain/src/github";
 
 export class HookService {
 
