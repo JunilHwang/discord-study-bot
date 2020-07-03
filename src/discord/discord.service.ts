@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const DISCORD_API_URL = 'https://discord.com/api/v6';
 
-class DiscordService {
+export class DiscordService {
   private readonly channelURL: string;
   private readonly headers: { [k: string]: string };
 

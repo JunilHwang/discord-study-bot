@@ -1,14 +1,13 @@
 import express, {Request, Response} from 'express';
 import {IncomingHttpHeaders} from "http";
+import { hookService } from "./hook.service";
 
 const router = express.Router();
 
 router.post('/api/github/hook', (request: Request, response: Response) => {
   const headers: IncomingHttpHeaders = request.headers;
-  const eventType = headers['x-github-event'];
-  const payload = request.body;
-  console.log(payload);
-  console.log(eventType);
+  const eventType: string = headers['x-github-event'] as string;
+  hookService.selectHookType(eventType, request.body);
   response.send('success');
 })
 
