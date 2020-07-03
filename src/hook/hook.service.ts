@@ -28,24 +28,47 @@ export class HookService {
   createPushMessage (body: any) {
     const data: GithubPushHook = body as GithubPushHook;
     const message: string = [
-      `[기본정보]`,
+      `[저장소에 푸쉬 발생]`,
       `Repository: ${data.repository.name}`,
       `url: ${data.repository.html_url}`,
       `pusher: ${data.pusher.name}(${data.pusher.email})`,
-      `[커밋정보]`,
-      data.commits.map(commit => `${commit.message} ${commit.timestamp}`).join('\n'),
+      `\n[커밋정보]`,
+      data.commits.map(commit => `${commit.message}        ${commit.timestamp}`).join('\n'),
     ].join('\n');
     return discordService.sendMessage(message);
   }
 
   createPRMessage (body: any) {
     const data: GithubPRHook = body as GithubPRHook;
-    return discordService.sendMessage('createPRMessage');
+    const message: string = [
+      `////////////////////`,
+      `[Pull Request]`,
+      `action: ${data.action}`,
+      `url: ${data.pull_request.html_url}`,
+      `--------------------------`,
+      `# ${data.pull_request.title}`,
+      `\n${data.pull_request.body}\n`,
+      `--------------------------`,
+      `created_at: ${data.pull_request.created_at}`,
+      `////////////////////`,
+    ].join('\n');
+    return discordService.sendMessage(message);
   }
 
   createPRReviewMessage (body: any) {
     const data: GithubPRReviewHook = body as GithubPRReviewHook;
-    return discordService.sendMessage('createPRReviewMessage');
+    const message: string = [
+      `////////////////////`,
+      `[Pull Request]`,
+      `action: ${data.action}`,
+      `url: ${data.pull_request.html_url}`,
+      `created_at: ${data.pull_request.created_at}`,
+      `[Review]`,
+      `reviewer: ${data.review.user.login}`,
+      `body: ${data.review.body}`,
+      `////////////////////`,
+    ].join('\n');
+    return discordService.sendMessage(message);
   }
 
   createPRReviewCommentMessage (body: any) {
