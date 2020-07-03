@@ -17,19 +17,18 @@ export class HookService {
   ) {}
 
   public selectHookType (type: string, body: any): Promise<any> {
-    const types: { [k: string]: Function } = {
-      'push': this.createPushMessage,
-      'pull_request': this.createPRMessage,
-      'pull_request_review': this.createPRReviewMessage,
-      'pull_request_review_comment': this.createPRReviewCommentMessage,
-      'issues': this.createIssueMessage,
-      'issue_comment': this.createIssueCommentMessage,
+    const types: { [k: string]: string } = {
+      'push': 'createPushMessage',
+      'pull_request': 'createPRMessage',
+      'pull_request_review': 'createPRReviewMessage',
+      'pull_request_review_comment': 'createPRReviewCommentMessage',
+      'issues': 'createIssueMessage',
+      'issue_comment': 'createIssueCommentMessage',
     };
-    const method: Function|undefined = types[type];
+    const method: string|undefined = types[type];
     if (method === undefined) return;
     try {
-      return method(body)
-        .catch((e: any) => { throw e; })
+      return this[method](body).catch((e: any) => { throw e; })
     } catch (e) {
       console.error('HookService.selectHookType()', e);
     }
