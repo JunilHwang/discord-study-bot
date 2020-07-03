@@ -100,7 +100,15 @@ export class HookService {
 
   createIssueCommentMessage (body: any) {
     const data: GithubIssueCommentHook = body as GithubIssueCommentHook;
-    return discordService.sendMessage('createIssueCommentMessage');
+    const message: string = [
+      `////////////////////`,
+      `[Issue Comment]`,
+      `writer: ${data.comment.user.login}`,
+      `created_at: ${data.comment.created_at}`,
+      `url: ${data.comment.html_url}`,
+      data.comment.body,
+    ].join('\n');
+    return discordService.sendMessage(message);
   }
 
 }
