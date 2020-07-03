@@ -50,7 +50,6 @@ export class HookService {
       `\n${data.pull_request.body}\n`,
       `--------------------------`,
       `created_at: ${data.pull_request.created_at}`,
-      `////////////////////`,
     ].join('\n');
     return discordService.sendMessage(message);
   }
@@ -65,8 +64,7 @@ export class HookService {
       `created_at: ${data.pull_request.created_at}`,
       `[Review]`,
       `reviewer: ${data.review.user.login}`,
-      `body: ${data.review.body}`,
-      `////////////////////`,
+      data.review.body,
     ].join('\n');
     return discordService.sendMessage(message);
   }
