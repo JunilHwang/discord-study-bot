@@ -36,15 +36,14 @@ export class HookService {
     }
   }
 
-  public createPushMessage (body: any): string {
-    const data: GithubPushHook = body as GithubPushHook;
+  public createPushMessage ({ repository, pusher, commits }: GithubPushHook): string {
     return [
       `[저장소에 푸쉬 발생]`,
-      `Repository: __**${data.repository.name}**__`,
-      `url: __**${data.repository.html_url}**__`,
-      `pusher: __**${data.pusher.name}(${data.pusher.email})**__`,
+      `Repository: __**${repository.name}**__`,
+      `url: __**${repository.html_url}**__`,
+      `pusher: __**${pusher.name}(${pusher.email})**__`,
       `\n[커밋정보]`,
-      data.commits.map(commit => `${commit.message}        ${commit.timestamp}`).join('\n'),
+      commits.map(commit => `${commit.message}        ${commit.timestamp}`).join('\n'),
     ].join('\n');
   }
 
