@@ -58,16 +58,14 @@ export class HookService {
     ].join('\n');
   }
 
-  public createPRReviewMessage (body: any): string {
-    const data: GithubPRReviewHook = body as GithubPRReviewHook;
+  public createPRReviewMessage ({ action, pull_request, review }: GithubPRReviewHook): string {
     return [
       `[Pull Request Review]`,
-      `action: __**${data.action}**__`,
-      `url: __**${data.pull_request.html_url}**__`,
-      `created_at: __**${data.pull_request.created_at}**__`,
-      `[Review]`,
-      `reviewer: __**${data.review.user.login}**__`,
-      data.review.body,
+      `action: __**${action}**__`,
+      `url: __**${pull_request.html_url}**__`,
+      `reviewer: __**${review.user.login}**__`,
+      `created_at: __**${pull_request.created_at}**__`,
+      review.body,
     ].join('\n');
   }
 
