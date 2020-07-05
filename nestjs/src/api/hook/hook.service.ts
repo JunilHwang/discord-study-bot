@@ -80,26 +80,24 @@ export class HookService {
     ].join('\n');
   }
 
-  public createIssueMessage (body: any): string {
-    const data: GithubIssueHook = body as GithubIssueHook;
+  public createIssueMessage ({ action, issue }: GithubIssueHook): string {
     return [
       `[Issue]`,
-      `action: __**${data.action}**__`,
-      `writer: __**${data.issue.user.login}**__`,
-      `created_at: __**${data.issue.created_at}**__`,
-      `url: __**${data.issue.html_url}**__`,
-      data.issue.body,
+      `action: __**${action}**__`,
+      `url: __**${issue.html_url}**__`,
+      `writer: __**${issue.user.login}**__`,
+      `created_at: __**${issue.created_at}**__`,
+      issue.body,
     ].join('\n');
   }
 
-  public createIssueCommentMessage (body: any): string {
-    const data: GithubIssueCommentHook = body as GithubIssueCommentHook;
+  public createIssueCommentMessage ({ comment }: GithubIssueCommentHook): string {
     return [
       `[Issue Comment]`,
-      `writer: __**${data.comment.user.login}**__`,
-      `created_at: __**${data.comment.created_at}**__`,
-      `url: __**${data.comment.html_url}**__`,
-      data.comment.body,
+      `url: __**${comment.html_url}**__`,
+      `writer: __**${comment.user.login}**__`,
+      `created_at: __**${comment.created_at}**__`,
+      comment.body,
     ].join('\n');
   }
 }
