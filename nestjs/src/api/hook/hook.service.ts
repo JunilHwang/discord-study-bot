@@ -69,16 +69,14 @@ export class HookService {
     ].join('\n');
   }
 
-  public createPRReviewCommentMessage (body: any): string {
-    const data: GithubPRReviewCommentHook = body as GithubPRReviewCommentHook;
+  public createPRReviewCommentMessage ({ action, pull_request, comment }: GithubPRReviewCommentHook): string {
     return [
       `[Pull Request Review Comment]`,
-      `action: __**${data.action}**__`,
-      `url: __**${data.pull_request.html_url}**__`,
-      `created_at: __**${data.pull_request.created_at}**__`,
-      `[Comment]`,
-      `writer: __**${data.comment.user.login}**__`,
-      data.comment.body
+      `action: __**${action}**__`,
+      `url: __**${pull_request.html_url}**__`,
+      `writer: __**${comment.user.login}**__`,
+      `created_at: __**${pull_request.created_at}**__`,
+      comment.body
     ].join('\n');
   }
 
