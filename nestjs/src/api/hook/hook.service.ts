@@ -47,17 +47,14 @@ export class HookService {
     ].join('\n');
   }
 
-  public createPRMessage (body: any): string {
-    const data: GithubPRHook = body as GithubPRHook;
+  public createPRMessage ({ action, pull_request }: GithubPRHook): string {
     return [
       `[Pull Request]`,
-      `action: __**${data.action}**__`,
-      `url: __**${data.pull_request.html_url}**__`,
-      `--------------------------`,
-      `__**${data.pull_request.title}**__`,
-      `${data.pull_request.body}`,
-      `--------------------------`,
-      `created_at: ${data.pull_request.created_at}`,
+      `action: __**${action}**__`,
+      `url: __**${pull_request.html_url}**__`,
+      `created_at: ${pull_request.created_at}`,
+      `__**${pull_request.title}**__`,
+      pull_request.body,
     ].join('\n');
   }
 
