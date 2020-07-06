@@ -1,0 +1,1 @@
+export const LoginModule = () => import('./LoginModule.vue');
