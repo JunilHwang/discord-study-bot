@@ -1,0 +1,11 @@
+span.middle {
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 100%;
+
+  + * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
