@@ -1,9 +1,18 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <sidebar/>
     <router-view/>
   </div>
 </template>
+
+<script lang="ts">
+  import {Component, Vue} from 'vue-property-decorator'
+  import {Sidebar} from '@/components'
+
+  const components = { Sidebar };
+
+  @Component({ components })
+  export default class App extends Vue {
+
+  }
+</script>
