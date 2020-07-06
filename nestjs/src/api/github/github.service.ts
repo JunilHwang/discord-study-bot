@@ -16,7 +16,7 @@ export class GithubService {
       return await $http.get(AUTH_URL, {headers}).then(({ data }) => data)
     } catch (e) {
       console.error('GithubService.getAuth(): ', e)
-      return 'auth';
+      throw 'getAuth';
     }
   }
 }
