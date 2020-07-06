@@ -21,8 +21,7 @@ export class GithubFacade {
      }
   }
 
-  public async getAuth (id: string, password: string): Promise<GithubPrivateUser> {
-    const token = new Buffer(`${id}:${password}`).toString('base64');
+  public async getAuth (token: string): Promise<GithubPrivateUser> {
     try {
       return await this.githubService.getAuth(token);
     } catch (e) {

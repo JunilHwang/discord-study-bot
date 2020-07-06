@@ -1,5 +1,5 @@
-import {Controller, Get, HttpCode, HttpStatus, Post, Req} from "@nestjs/common";
-import {Request} from "express";
+import {Controller, Get, HttpCode, HttpStatus, Post, Req, Res} from "@nestjs/common";
+import {Request, Response} from "express";
 import {GithubFacade} from "./github.facade";
 import {GithubPrivateUser} from "domain/src";
 
@@ -16,7 +16,13 @@ export class GithubController {
 
   @Post('/auth')
   @HttpCode(HttpStatus.OK)
-  public getAuth (@Req() { body: { id, password } }: Request): Promise<GithubPrivateUser> {
-    return this.githubFacade.getAuth(id, password);
+  public async getAuth (
+    @Req() { body: { id, password } }: Request,
+    @Res() response: Response
+  ): Promise<GithubPrivateUser> {
+    const token = new Buffer(`${id}:${password}`).toString('base64');
+    const userInfo = await this.githubFacade.getAuth(token);
+    response.cookie('access_token', token, { maxAge: 1000 * 60 * 60 })
+    return userInfo;
   }
 }
