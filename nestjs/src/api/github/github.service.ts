@@ -10,14 +10,13 @@ const AUTH_URL = BASE_URL + '/user';
 export class GithubService {
   constructor() {}
 
-  public async getAuth ({ id, password }): Promise<GithubPrivateUser> {
-    const basicToken: string = new Buffer(`${id}:${password}`).toString('base64');
-    const headers: IncomingHttpHeaders = { Authorization: `Basic ${basicToken}` };
+  public async getAuth (token: string): Promise<GithubPrivateUser> {
+    const headers: IncomingHttpHeaders = { Authorization: `Basic ${token}` };
     try {
       return await $http.get(AUTH_URL, {headers}).then(({ data }) => data)
     } catch (e) {
       console.error('GithubService.getAuth(): ', e)
-      return null;
+      return 'auth';
     }
   }
 }
