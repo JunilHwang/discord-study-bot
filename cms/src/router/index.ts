@@ -1,22 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { Home, About } from "@/views";
+import { Hooks, Channels, Messages } from "@/views";
 
 Vue.use(VueRouter)
 
 export default new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  base: '/cms',
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home,
+      alias: '/hooks',
+      name: 'Hooks',
+      component: Hooks,
     },
     {
-      path: '/about',
-      name: 'About',
-      component: About,
-    }
+      path: '/channels',
+      name: 'Channels',
+      component: Channels,
+    },
+    {
+      path: '/messages',
+      name: 'Messages',
+      component: Messages,
+    },
   ]
 })

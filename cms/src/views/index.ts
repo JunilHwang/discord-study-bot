@@ -1,2 +1,3 @@
-export const About = () => import('./About.vue');
-export const Home = () => import('./Home.vue');
+export const Hooks = () => import('./Hooks.vue');
+export const Channels = () => import('./Channels.vue');
+export const Messages = () => import('./Messages.vue');
