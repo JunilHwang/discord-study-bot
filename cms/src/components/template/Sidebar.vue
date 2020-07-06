@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    sidebar
+
   </div>
 </template>
 
@@ -12,3 +12,14 @@
 
   }
 </script>
+
+<style lang="scss" scoped>
+.sidebar {
+  background: #222;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+}
+</style>
