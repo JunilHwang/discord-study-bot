@@ -23,3 +23,15 @@ a {
 img, svg, button, input, textarea, select, i {
   vertical-align: middle;
 }
+
+h1, h2, h3, h4, h5, h6, strong {
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 29px;
+  line-height: 1;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}

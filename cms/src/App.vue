@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <sidebar/>
-    <router-view/>
+    <main>
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
+    </main>
   </div>
 </template>
 
@@ -16,3 +20,10 @@
 
   }
 </script>
+
+<style lang="scss" scoped>
+  main {
+    margin-left: 50px;
+    padding: 50px;
+  }
+</style>

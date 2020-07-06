@@ -1,6 +1,6 @@
 <template>
   <section>
-
+    <h1>Hook 메세지 템플릿 설정</h1>
   </section>
 </template>
 

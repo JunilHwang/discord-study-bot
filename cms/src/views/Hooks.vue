@@ -1,6 +1,6 @@
 <template>
   <section>
-
+    <h1>Github Hook 관리</h1>
   </section>
 </template>
 
