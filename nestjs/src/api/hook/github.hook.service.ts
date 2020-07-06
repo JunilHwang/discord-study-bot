@@ -11,12 +11,12 @@ import {
 import {AxiosResponse} from "axios";
 
 @Injectable()
-export class HookService {
+export class GithubHookService {
   constructor(
     @Inject('DiscordService') private readonly discordService: DiscordService
   ) {}
 
-  public selectHookType (type: string, body: any): Promise<any> {
+  public async selectHookType (type: string, body: any): Promise<void> {
     const types: { [k: string]: string } = {
       'push': 'createPushMessage',
       'pull_request': 'createPRMessage',
@@ -28,11 +28,10 @@ export class HookService {
     const method: string|undefined = types[type];
     if (method === undefined) return;
     try {
-      return this.discordService
-                 .sendMessage(this[method](body))
-                 .catch((e: any) => { throw e; })
+      await this.discordService.sendMessage(this[method](body))
     } catch (e) {
       console.error('HookService.selectHookType()', e);
+      return Promise.resolve(null);
     }
   }
 

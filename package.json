@@ -9,7 +9,7 @@
   "scripts": {
     "build": "cd nestjs && nest build",
     "forever:prod": "forever start nestjs/dist/main.js",
-    "proc": "yarn && cd cms && cd nestjs && nest build && forever stopall && forever start dist/main.js"
+    "proc": "yarn && cd nestjs && nest build && forever stopall && forever start dist/main.js"
   },
   "dependencies": {
     "forever": "^3.0.0"

@@ -1,10 +1,10 @@
 import {Controller, Get, Post, Req} from "@nestjs/common";
-import {HookService} from "./hook.service";
 import {Request} from "express";
+import {GithubFacade} from "./github.facade";
 
 @Controller('/api/github/hook')
-export class HookController {
-  constructor(private readonly hookService: HookService) {}
+export class GithubController {
+  constructor(private readonly githubFacade: GithubFacade) {}
 
   @Get()
   public getHook () {
@@ -14,7 +14,7 @@ export class HookController {
   @Post()
   public createMessage (@Req() request: Request) {
     const eventType: string = request.headers['x-github-event'] as string;
-    this.hookService.selectHookType(eventType, request.body);
+    this.githubFacade.sendHookMessage(eventType, request.body);
     return 'success';
   }
 }
