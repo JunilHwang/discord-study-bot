@@ -11,7 +11,9 @@ export class GithubFacade {
      try {
        await this.githubHookService.selectHookType(type, body);
      } catch (e) {
-       console.error('GithubHookService.sendHookMessage()', e);
+       if (e !== 'selectHookType') {
+         console.error('GithubHookService.sendHookMessage()', e);
+       }
        throw new HttpException("잘못된 요청입니다.", HttpStatus.BAD_REQUEST);
      }
   }

@@ -31,7 +31,7 @@ export class GithubHookService {
       await this.discordService.sendMessage(this[method](body))
     } catch (e) {
       console.error('HookService.selectHookType()', e);
-      return Promise.resolve(null);
+      throw 'selectHookType';
     }
   }
 
