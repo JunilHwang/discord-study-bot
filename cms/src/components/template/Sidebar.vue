@@ -19,16 +19,32 @@
           <i class="el-icon-message" />
         </router-link>
       </li>
+      <li>
+        <a href="#" @click.prevent="logout" class="sidebarLink">
+          <span class="middle" />
+          <i class="el-icon-circle-close" />
+        </a>
+      </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
   import {Component, Vue} from 'vue-property-decorator'
+  import {namespace} from "vuex-class";
+  import {ActionMethod} from "vuex";
+
+  const userStore = namespace('userStore');
 
   @Component
   export default class Sidebar extends Vue {
 
+    @userStore.Mutation LOGOUT!: ActionMethod
+
+    private logout () {
+      this.LOGOUT();
+      this.$message({ type: 'success', message: '로그아웃 되었습니다.' });
+    }
   }
 </script>
 
