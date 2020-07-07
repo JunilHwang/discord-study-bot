@@ -26,7 +26,7 @@ export class GithubController {
     @Req() { body: { id, password } }: Request,
     @Res() response: Response
   ): Promise<void> {
-    const token = new Buffer(`${id}:${password}`).toString('base64');
+    const token = Buffer.from(`${id}:${password}`).toString('base64');
     const userInfo = await this.githubFacade.getAuth(token);
     response
       .cookie('access_token', token, { maxAge: 1000 * 60 * 60 })
