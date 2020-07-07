@@ -34,7 +34,7 @@
     private async submit (): Promise<void> {
       try {
         await this.SET_USER_INFO(this.formData);
-        window.location.reload();
+        this.$message({ type: 'success', message: '로그인 되었습니다.' })
       } catch (e) {
         console.error(e);
         this.$message({ type: 'error', message: '로그인에 실패하였습니다.' })
