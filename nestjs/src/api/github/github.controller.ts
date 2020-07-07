@@ -28,8 +28,7 @@ export class GithubController {
   ): Promise<void> {
     const token = Buffer.from(`${id}:${password}`).toString('base64');
     const userInfo = await this.githubFacade.getAuth(token);
-    response
-      .cookie('access_token', token, { maxAge: 1000 * 60 * 60 })
-      .json(userInfo);
+    response.cookie('access_token', token, { maxAge: 1000 * 60 * 60 })
+            .json(userInfo);
   }
 }
