@@ -1,6 +1,7 @@
-import {Controller, Get, HttpCode, HttpStatus, Post, Req, Res} from "@nestjs/common";
+import {Body, Controller, Get, HttpCode, HttpStatus, Post, Req, Res} from "@nestjs/common";
 import {Request, Response} from "express";
 import {GithubFacade} from "./github.facade";
+import {Token} from "../../decorators";
 
 @Controller('/api/github')
 export class GithubController {
@@ -8,11 +9,11 @@ export class GithubController {
 
   @Get('/hooks')
   @HttpCode(HttpStatus.NO_CONTENT)
-  public getHooks (@Req() request: Request): null {
+  public getHooks (@Token() token: string, @Body() { owner }): null {
     return null
   }
 
-  @Post('/hook')
+  @Post('/hook/payload')
   @HttpCode(HttpStatus.NO_CONTENT)
   public createMessage (@Req() request: Request): Promise<void> {
     const eventType: string = request.headers['x-github-event'] as string;
