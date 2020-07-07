@@ -6,6 +6,12 @@ import {GithubFacade} from "./github.facade";
 export class GithubController {
   constructor(private readonly githubFacade: GithubFacade) {}
 
+  @Get('/hooks')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  public getHooks (@Req() request: Request): null {
+    return null
+  }
+
   @Post('/hook')
   @HttpCode(HttpStatus.NO_CONTENT)
   public createMessage (@Req() request: Request): Promise<void> {
