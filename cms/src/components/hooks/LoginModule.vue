@@ -6,7 +6,7 @@
         <el-input v-model="formData.id"/>
       </el-form-item>
       <el-form-item label="비밀번호" size="small" required>
-        <el-input v-model="formData.password"/>
+        <el-input type="password" v-model="formData.password"/>
       </el-form-item>
       <el-form-item size="small">
         <el-button native-type="submit" type="primary">로그인</el-button>
@@ -18,20 +18,27 @@
 <script lang="ts">
   import {Component, Vue} from 'vue-property-decorator'
   import {namespace} from 'vuex-class'
+  import {ActionMethod} from "vuex";
 
   const userStore = namespace('userStore')
 
   @Component
   export default class Hooks extends Vue {
-    @userStore.Action SET_USER_INFO!: Function;
+    @userStore.Action SET_USER_INFO!: ActionMethod;
 
     private formData: { [k: string]: string } = {
       id: '',
       password: ''
     }
 
-    private submit () {
-      console.log(this.formData)
+    private async submit (): Promise<void> {
+      try {
+        await this.SET_USER_INFO(this.formData);
+        window.location.reload();
+      } catch (e) {
+        console.error(e);
+        this.$message({ type: 'error', message: '로그인에 실패하였습니다.' })
+      }
     }
 
   }
