@@ -21,6 +21,7 @@ export const createPRMessage = ({ action, pull_request }: GithubPRHook): string 
   `action: __**${action}**__`,
   `url: __**${pull_request.html_url}**__`,
   `created_at: ${pull_request.created_at}`,
+  `author: ${pull_request.user.login}`,
   `__**${pull_request.title}**__`,
   pull_request.body,
 ].join('\n');
