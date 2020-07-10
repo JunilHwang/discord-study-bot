@@ -22,7 +22,15 @@ export class GithubHookService {
       'issue_comment': 'createIssueCommentMessage',
     };
     const method: string|undefined = types[type];
-    if (method === undefined) return;
+
+    if (method === undefined) {
+      return;
+    }
+
+    if (body.action && ['labeled', 'assigned'].includes(body.action)) {
+      return;
+    }
+
     try {
       await this.discordService.sendMessage(GithubHookTemplate[method](body))
     } catch (e) {
