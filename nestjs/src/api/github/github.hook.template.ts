@@ -28,7 +28,9 @@ export const createPRMessage = ({ action, pull_request }: GithubPRHook): string 
 export const createPRReviewMessage = ({ action, pull_request, review }: GithubPRReviewHook): string => [
   `[Pull Request Review]`,
   `action: __**${action}**__`,
+  `title: __**${pull_request.title}**__`,
   `url: __**${pull_request.html_url}**__`,
+  `author: __**${pull_request.user.login}**__`,
   `reviewer: __**${review.user.login}**__`,
   `created_at: __**${pull_request.created_at}**__`,
   review.body,
@@ -37,7 +39,9 @@ export const createPRReviewMessage = ({ action, pull_request, review }: GithubPR
 export const createPRReviewCommentMessage = ({ action, pull_request, comment }: GithubPRReviewCommentHook): string => [
   `[Pull Request Review Comment]`,
   `action: __**${action}**__`,
+  `title: __**${pull_request.title}**__`,
   `url: __**${pull_request.html_url}**__`,
+  `author: __**${pull_request.user.login}**__`,
   `writer: __**${comment.user.login}**__`,
   `created_at: __**${pull_request.created_at}**__`,
   comment.body
