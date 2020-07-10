@@ -14,7 +14,7 @@ export const createPushMessage = ({ repository, pusher, commits }: GithubPushHoo
   `pusher: __**${pusher.name}(${pusher.email})**__`,
   `\n[커밋정보]`,
   commits.map(commit => `${commit.message}        ${commit.timestamp}`).join('\n'),
-].join('\n') + '\n';
+].join('\n');
 
 export const createPRMessage = ({ action, pull_request }: GithubPRHook): string => [
   `[Pull Request]`,
@@ -23,7 +23,7 @@ export const createPRMessage = ({ action, pull_request }: GithubPRHook): string 
   `created_at: ${pull_request.created_at}`,
   `__**${pull_request.title}**__`,
   pull_request.body,
-].join('\n') + '\n';
+].join('\n');
 
 export const createPRReviewMessage = ({ action, pull_request, review }: GithubPRReviewHook): string => [
   `[Pull Request Review]`,
@@ -34,7 +34,7 @@ export const createPRReviewMessage = ({ action, pull_request, review }: GithubPR
   `reviewer: __**${review.user.login}**__`,
   `created_at: __**${pull_request.created_at}**__`,
   review.body,
-].join('\n') + '\n';
+].join('\n');
 
 export const createPRReviewCommentMessage = ({ action, pull_request, comment }: GithubPRReviewCommentHook): string => [
   `[Pull Request Review Comment]`,
@@ -45,7 +45,7 @@ export const createPRReviewCommentMessage = ({ action, pull_request, comment }: 
   `writer: __**${comment.user.login}**__`,
   `created_at: __**${pull_request.created_at}**__`,
   comment.body
-].join('\n') + '\n';
+].join('\n');
 
 export const createIssueMessage = ({ action, issue }: GithubIssueHook): string => [
   `[Issue]`,
@@ -54,7 +54,7 @@ export const createIssueMessage = ({ action, issue }: GithubIssueHook): string =
   `writer: __**${issue.user.login}**__`,
   `created_at: __**${issue.created_at}**__`,
   issue.body,
-].join('\n') + '\n';
+].join('\n');
 
 export const createIssueCommentMessage = ({ comment }: GithubIssueCommentHook): string => [
   `[Issue Comment]`,
@@ -62,4 +62,4 @@ export const createIssueCommentMessage = ({ comment }: GithubIssueCommentHook): 
   `writer: __**${comment.user.login}**__`,
   `created_at: __**${comment.created_at}**__`,
   comment.body,
-].join('\n') + '\n';
+].join('\n');

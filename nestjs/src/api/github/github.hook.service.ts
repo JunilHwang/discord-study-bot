@@ -27,12 +27,12 @@ export class GithubHookService {
       return;
     }
 
-    if (body.action && ['labeled', 'assigned'].includes(body.action)) {
+    if (body.action && ['labeled', 'assigned', 'edited'].includes(body.action)) {
       return;
     }
 
     try {
-      await this.discordService.sendMessage(GithubHookTemplate[method](body))
+      await this.discordService.sendMessage(GithubHookTemplate[method](body) + '\n');
     } catch (e) {
       console.error('HookService.selectHookType()', e);
       throw 'selectHookType';
