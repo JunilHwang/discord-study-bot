@@ -7,8 +7,11 @@ import {
   GithubHook,
   GithubOrganization,
   GithubPrivateUser,
-  GithubRepository
+  GithubRepository, GithubTinyRepository
 } from "domain/src";
+
+const repoToTinyRepo = ({ id, node_id, name, full_name, html_url, description, url, hooks_url, created_at, updated_at }: GithubRepository): GithubTinyRepository =>
+  ({ id, node_id, name, full_name, html_url, description, url, hooks_url, created_at, updated_at })
 
 @Injectable()
 export class GithubFacade {
@@ -51,9 +54,10 @@ export class GithubFacade {
     }
   }
 
-  public async getRepos (githubCommonRequest: GithubCommonRequest): Promise<GithubRepository[]> {
+  public async getRepos (githubCommonRequest: GithubCommonRequest): Promise<GithubTinyRepository[]> {
     try {
-      return await this.githubService.getRepos(githubCommonRequest);
+      const repos = await this.githubService.getRepos(githubCommonRequest);
+      return repos.map(repoToTinyRepo);
     } catch (e) {
       if (e !== 'getRepos') {
         console.error('GithubHookService.getRepos()', e);

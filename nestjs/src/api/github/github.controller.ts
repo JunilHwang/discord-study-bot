@@ -2,7 +2,7 @@ import {Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Query, Req, Re
 import {Request, Response} from "express";
 import {GithubFacade} from "./github.facade";
 import {Token} from "../../decorators";
-import {GithubHook, GithubOrganization, GithubRepository} from "domain/src";
+import {GithubHook, GithubOrganization, GithubRepository, GithubTinyRepository} from "domain/src";
 
 @Controller('/api/github')
 export class GithubController {
@@ -16,7 +16,7 @@ export class GithubController {
 
   @Get('/repos/:id')
   @HttpCode(HttpStatus.OK)
-  public getRepos (@Token() token: string, @Param('id') id: string, @Req() request: Request): Promise<GithubRepository[]> {
+  public getRepos (@Token() token: string, @Param('id') id: string, @Req() request: Request): Promise<GithubTinyRepository[]> {
     return this.githubFacade.getRepos({ token, id });
   }
 
