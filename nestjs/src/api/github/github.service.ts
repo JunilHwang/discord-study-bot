@@ -4,7 +4,6 @@ import {IncomingHttpHeaders} from "http";
 import {DefaultBody, GithubOrganization, GithubPrivateUser, GithubRepository} from "domain/src";
 
 const BASE_URL = 'https://api.github.com';
-const AUTH_URL = BASE_URL + '/user';
 
 @Injectable()
 export class GithubService {
@@ -12,6 +11,7 @@ export class GithubService {
 
   public async getAuth (token: string): Promise<GithubPrivateUser> {
     const headers: IncomingHttpHeaders = { Authorization: `Basic ${token}` };
+    const AUTH_URL = BASE_URL + '/user';
     try {
       return await $http.get(AUTH_URL, {headers}).then(({ data }) => data)
     } catch (e) {
