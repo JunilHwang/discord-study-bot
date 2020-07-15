@@ -55,8 +55,8 @@ export class GithubFacade {
     try {
       return await this.githubService.getRepos(githubCommonRequest);
     } catch (e) {
-      if (e !== 'getAuth') {
-        console.error('GithubHookService.getAuth()', e);
+      if (e !== 'getRepos') {
+        console.error('GithubHookService.getRepos()', e);
       }
       throw new HttpException("잘못된 요청입니다.", HttpStatus.BAD_REQUEST);
     }
