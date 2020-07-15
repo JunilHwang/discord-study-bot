@@ -3,7 +3,7 @@ import {DiscordService} from "../discord/discord.service";
 import * as GithubHookTemplate from './github.hook.template';
 import $http from 'axios';
 import {IncomingHttpHeaders} from "http";
-import {DefaultBody} from "domain/src";
+import {DefaultBody, GithubHook} from "domain/src";
 
 @Injectable()
 export class GithubHookService {
@@ -38,7 +38,7 @@ export class GithubHookService {
     }
   }
 
-  public async getHooks ({ token, url }: DefaultBody) {
+  public async getHooks ({ token, url }: DefaultBody): Promise<GithubHook[]> {
     const headers: IncomingHttpHeaders = { Authorization: `Basic ${token}` };
     try {
       return await $http.get(url, {headers}).then(response => response.data)
