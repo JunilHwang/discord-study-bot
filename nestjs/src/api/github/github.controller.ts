@@ -20,9 +20,9 @@ export class GithubController {
     return this.githubFacade.getRepos({ token, id });
   }
 
-  @Get('/organizations')
+  @Get('/organizations/:id')
   @HttpCode(HttpStatus.OK)
-  public getOrganizations (@Token() token: string, @Query('id') id: string): Promise<GithubOrganization[]> {
+  public getOrganizations (@Token() token: string, @Param('id') id: string): Promise<GithubOrganization[]> {
     return this.githubFacade.getOrgs({ token, id });
   }
 
