@@ -33,9 +33,9 @@ export class GithubService {
 
   public async getRepos ({ token, id }: GithubCommonRequest): Promise<GithubRepository[]> {
     const headers: IncomingHttpHeaders = { Authorization: `Basic ${token}` };
-    const ORGS_URL = `${BASE_URL}/repos/${id}`
+    const REPOS_URL = `${BASE_URL}/users/${id}/repos`
     try {
-      return await $http.get(ORGS_URL, {headers}).then(({ data }) => data)
+      return await $http.get(REPOS_URL, {headers}).then(({ data }) => data)
     } catch (e) {
       console.error('GithubService.getRepos(): ', e)
       throw 'getRepos';
