@@ -30,4 +30,15 @@ export class GithubService {
       throw 'getOrgs';
     }
   }
+
+  public async getRepos ({ token, id }: DefaultBody) {
+    const headers: IncomingHttpHeaders = { Authorization: `Basic ${token}` };
+    const ORGS_URL = `${BASE_URL}/repos/${id}`
+    try {
+      return await $http.get(ORGS_URL, {headers}).then(({ data }) => data)
+    } catch (e) {
+      console.error('GithubService.getRepos(): ', e)
+      throw 'getRepos';
+    }
+  }
 }
