@@ -1,7 +1,7 @@
 import {Injectable} from "@nestjs/common";
-import $http, {AxiosResponse} from 'axios'
+import $http from 'axios'
 import {IncomingHttpHeaders} from "http";
-import {DefaultBody, GithubPrivateUser} from "domain/src";
+import {DefaultBody, GithubOrganization, GithubPrivateUser, GithubRepository} from "domain/src";
 
 const BASE_URL = 'https://api.github.com';
 const AUTH_URL = BASE_URL + '/user';
@@ -20,7 +20,7 @@ export class GithubService {
     }
   }
 
-  public async getOrgs ({ token, id }: DefaultBody) {
+  public async getOrgs ({ token, id }: DefaultBody): Promise<GithubOrganization[]> {
     const headers: IncomingHttpHeaders = { Authorization: `Basic ${token}` };
     const ORGS_URL = `${BASE_URL}/users/${id}/orgs`
     try {
@@ -31,7 +31,7 @@ export class GithubService {
     }
   }
 
-  public async getRepos ({ token, id }: DefaultBody) {
+  public async getRepos ({ token, id }: DefaultBody): Promise<GithubRepository[]> {
     const headers: IncomingHttpHeaders = { Authorization: `Basic ${token}` };
     const ORGS_URL = `${BASE_URL}/repos/${id}`
     try {
