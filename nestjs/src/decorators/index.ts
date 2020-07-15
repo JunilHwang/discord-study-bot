@@ -8,6 +8,6 @@ export const Token = createParamDecorator((data: undefined, ctx: ExecutionContex
   return token
 });
 
-export const OptionalToken = createParamDecorator((data: undefined, req: Request): string =>
-  req.cookies.access_token
+export const OptionalToken = createParamDecorator((data: undefined, ctx: ExecutionContext): string =>
+  ctx.switchToHttp().getRequest().cookies.access_token
 );
