@@ -255,16 +255,37 @@ export interface GithubIssue {
 }
 
 export interface GithubOrganization {
-  login: string,
-  id: number,
-  node_id: string,
-  url: string,
-  repos_url: string,
-  events_url: string,
-  hooks_url: string,
-  issues_url: string,
-  members_url: string,
-  public_members_url: string,
-  avatar_url: string,
-  description?: string
+  login: string;
+  id: number;
+  node_id: string;
+  url: string;
+  repos_url: string;
+  events_url: string;
+  hooks_url: string;
+  issues_url: string;
+  members_url: string;
+  public_members_url: string;
+  avatar_url: string;
+  description?: string;
+}
+
+export interface GithubHook {
+  type: string;
+  id: string;
+  name: string;
+  active: string;
+  events: string[];
+  config: GithubHookConfig,
+  updated_at: string;
+  created_at: string;
+  url: string;
+  test_url: string;
+  ping_url: string;
+  last_response: { [k: string]: string };
+}
+
+export interface GithubHookConfig {
+  content_type: string;
+  insecure_ssl: string;
+  url: string
 }
