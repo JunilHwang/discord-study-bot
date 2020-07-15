@@ -1,16 +1,29 @@
-import {Body, Controller, Get, HttpCode, HttpStatus, Post, Req, Res} from "@nestjs/common";
+import {Body, Controller, Get, HttpCode, HttpStatus, Post, Query, Req, Res} from "@nestjs/common";
 import {Request, Response} from "express";
 import {GithubFacade} from "./github.facade";
 import {Token} from "../../decorators";
+import {GithubHook, GithubOrganization, GithubRepository} from "domain/src";
 
 @Controller('/api/github')
 export class GithubController {
   constructor(private readonly githubFacade: GithubFacade) {}
 
   @Get('/hooks')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  public getHooks (@Token() token: string, @Body() { owner }): null {
-    return null
+  @HttpCode(HttpStatus.OK)
+  public getHooks (@Token() token: string, @Query('urls') urls: string): Promise<GithubHook[]> {
+    return this.githubFacade.getMultipleHooks(token, urls.split(','));
+  }
+
+  @Get('/repos')
+  @HttpCode(HttpStatus.OK)
+  public getRepos (@Token() token: string, @Query('id') id: string): Promise<GithubRepository[]> {
+    return this.githubFacade.getRepos({ token, id });
+  }
+
+  @Get('/organizations')
+  @HttpCode(HttpStatus.OK)
+  public getOrganizations (@Token() token: string, @Query('id') id: string): Promise<GithubOrganization[]> {
+    return this.githubFacade.getOrgs({ token, id });
   }
 
   @Post('/hook/payload')
