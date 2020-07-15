@@ -1,7 +1,14 @@
 import {HttpException, HttpStatus, Inject, Injectable} from "@nestjs/common";
 import {GithubHookService} from "./github.hook.service";
 import {GithubService} from "./github.service";
-import {DefaultBody, GithubHook, GithubOrganization, GithubPrivateUser, GithubRepository} from "domain/src";
+import {
+  DefaultBody,
+  GithubCommonRequest,
+  GithubHook,
+  GithubOrganization,
+  GithubPrivateUser,
+  GithubRepository
+} from "domain/src";
 
 @Injectable()
 export class GithubFacade {
@@ -37,6 +44,17 @@ export class GithubFacade {
       const allHooks: GithubHook[][] = await Promise.all(hooksUrls.map(url => this.githubHookService.getHooks({ token, url })));
       return allHooks.reduce((flatHooks, hooks) => [ ...flatHooks, ...hooks ], []);
     } catch (e) {
+      if (e !== 'getMultipleHooks') {
+        console.error('GithubHookService.getMultipleHooks()', e);
+      }
+      throw new HttpException("잘못된 요청입니다.", HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  public async getRepos (githubCommonRequest: GithubCommonRequest): Promise<GithubRepository[]> {
+    try {
+      return await this.githubService.getRepos(githubCommonRequest);
+    } catch (e) {
       if (e !== 'getAuth') {
         console.error('GithubHookService.getAuth()', e);
       }
@@ -44,12 +62,12 @@ export class GithubFacade {
     }
   }
 
-  public async getOrgs ({ token, id }: DefaultBody): Promise<GithubOrganization[]> {
+  public async getOrgs (githubCommonRequest: GithubCommonRequest): Promise<GithubOrganization[]> {
     try {
-      return await this.githubService.getOrgs({ token, id });
+      return await this.githubService.getOrgs(githubCommonRequest);
     } catch (e) {
-      if (e !== 'getAuth') {
-        console.error('GithubHookService.getAuth()', e);
+      if (e !== 'getOrgs') {
+        console.error('GithubHookService.getOrgs()', e);
       }
       throw new HttpException("잘못된 요청입니다.", HttpStatus.BAD_REQUEST);
     }
