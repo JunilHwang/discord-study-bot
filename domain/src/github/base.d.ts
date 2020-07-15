@@ -76,6 +76,20 @@ export interface GithubRepository {
   master_branch: string;
 }
 
+export interface GithubTinyRepository {
+  id: number;
+  node_id: string;
+  name: string;
+  full_name: string;
+  private: boolean;
+  html_url: string;
+  description: string;
+  url: string;
+  hooks_url: string;
+  created_at: number;
+  updated_at: string;
+}
+
 export interface GithubUser {
   name: string;
   email: string;
