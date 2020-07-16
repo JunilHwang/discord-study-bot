@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { Hooks, Channels, Messages } from "@/views";
+import { Github, Channels, Messages } from "@/views";
 
 Vue.use(VueRouter)
 
@@ -10,9 +10,9 @@ export default new VueRouter({
   routes: [
     {
       path: '/',
-      alias: '/hooks',
-      name: 'Hooks',
-      component: Hooks,
+      alias: '/github',
+      name: 'Github',
+      component: Github,
     },
     {
       path: '/channels',

@@ -1,0 +1,30 @@
+<template>
+  <section>
+    <h1>Github Hook 관리</h1>
+    <el-card>
+      <h2 slot="header">Github Repository 목록</h2>
+      <el-tree :data="repos" />
+    </el-card>
+  </section>
+</template>
+
+<script lang="ts">
+  import {Component, Vue} from 'vue-property-decorator'
+  import {GithubTinyRepository, GithubUser} from "domain/src"
+  import {namespace} from "vuex-class"
+  import {ActionMethod} from "vuex";
+
+  const githubStore = namespace('githubStore');
+  const userStore = namespace('userStore');
+
+  @Component
+  export default class Hooks extends Vue {
+    @githubStore.State repos!: GithubTinyRepository[]
+    @userStore.Getter id!: string
+    @githubStore.Action FETCH_REPOS!: ActionMethod
+
+    created () {
+      this.FETCH_REPOS(this.id);
+    }
+  }
+</script>
