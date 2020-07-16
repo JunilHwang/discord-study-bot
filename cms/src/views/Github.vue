@@ -3,7 +3,10 @@
     <h1>Github Hook 관리</h1>
     <el-card>
       <h2 slot="header">Github Repository 목록</h2>
-      <el-tree :data="repos" />
+      <el-tree
+        :data="reposTree"
+        :props="{ label: 'label' }"
+        show-checkbox />
     </el-card>
   </section>
 </template>
@@ -23,7 +26,13 @@
     @userStore.Getter id!: string
     @githubStore.Action FETCH_REPOS!: ActionMethod
 
-    created () {
+    get reposTree (): { label: string }[] {
+      return this.repos.map(repo => ({
+        label: repo.full_name
+      }))
+    }
+
+    created (): void {
       this.FETCH_REPOS(this.id);
     }
   }
