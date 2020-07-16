@@ -10,8 +10,8 @@ export class userStore extends VuexModule {
   userInfo: GithubPrivateUser|null = JSON.parse(localStorage.getItem('userInfo') || 'null')
   token: string = Cookies.get('access_token') || ''
 
-  get accessToken (): string {
-    return this.token
+  get id (): string {
+    return this.userInfo?.login || ''
   }
 
   @MutationAction

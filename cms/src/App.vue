@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <template v-if="accessToken === ''">
+    <template v-if="token === ''">
       <main class="login">
         <login-module />
       </main>
@@ -29,7 +29,7 @@
 
   @Component({components})
   export default class App extends Vue {
-    @userStore.Getter accessToken!: string;
+    @userStore.State token!: string;
   }
 </script>
 
