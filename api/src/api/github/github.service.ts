@@ -5,6 +5,16 @@ import {DefaultBody, GithubCommonRequest, GithubOrganization, GithubPrivateUser,
 
 const BASE_URL = 'https://api.github.com';
 
+interface GithubServiceCache {
+  repos: { [k: string]: GithubRepository[] };
+  orgs: { [k: string]: GithubOrganization[] };
+}
+
+const cache: GithubServiceCache = {
+  repos: {},
+  orgs: {},
+};
+
 @Injectable()
 export class GithubService {
   constructor() {}
@@ -21,6 +31,8 @@ export class GithubService {
   }
 
   public async getOrgs ({ token, id }: GithubCommonRequest): Promise<GithubOrganization[]> {
+    if (cache.orgs[id]) return Promise.resolve(cache.orgs[id]);
+
     const headers: IncomingHttpHeaders = { Authorization: `Basic ${token}` };
     const ORGS_URL = `${BASE_URL}/users/${id}/orgs`
     try {
@@ -32,6 +44,8 @@ export class GithubService {
   }
 
   public async getRepos ({ token, id }: GithubCommonRequest): Promise<GithubRepository[]> {
+    if (cache.repos[id]) return Promise.resolve(cache.repos[id]);
+
     const headers: IncomingHttpHeaders = { Authorization: `Basic ${token}` };
     const REPOS_URL = `${BASE_URL}/users/${id}/repos`
     try {
