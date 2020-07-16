@@ -1,1 +1,5 @@
-export { default as githubService } from './GithubService'
+import * as githubService from './GithubService'
+
+export {
+  githubService
+}
