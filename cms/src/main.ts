@@ -6,7 +6,9 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './styles/index.scss'
 
-Vue.use(ElementUI);
+const locale = require('element-ui/lib/locale/lang/ko')
+
+Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false
 
