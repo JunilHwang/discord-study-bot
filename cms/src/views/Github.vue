@@ -6,6 +6,7 @@
       <el-tree
         :data="reposTree"
         :props="{ label: 'label' }"
+        @check-change="changeChecked"
         show-checkbox />
     </el-card>
   </section>
@@ -30,6 +31,10 @@
       return this.repos.map(repo => ({
         label: repo.full_name
       }))
+    }
+
+    changeChecked ({ label }: { [k: string]: string }, checked: boolean, indeterminate: boolean) {
+      console.log(label, checked, indeterminate);
     }
 
     created (): void {
