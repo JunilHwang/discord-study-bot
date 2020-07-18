@@ -11,6 +11,7 @@ Discord bot을 통하여 메세지를 보내도록 만들어진 프로젝트입�
 - node.js
 - express.js: 초기에 express.js로 개발하였습니다.
 - nestjs: 후에 nestjs로 마이그레이션을 진행하였습니다.
+- vue.js: CMS를 만드는데 필요함
 - [discord api](https://discord.com/developers/docs/intro)
 - [discrod bot](https://discord.com/developers/docs/topics/oauth2#bots)
 - [github webhook](https://developer.github.com/webhooks/))
