@@ -7,6 +7,7 @@
         :data="reposTree"
         :props="{ label: 'label' }"
         @check-change="changeChecked"
+        @node-click="showData"
         show-checkbox />
     </el-card>
   </section>
@@ -35,6 +36,10 @@
 
     changeChecked ({ label }: { [k: string]: string }, checked: boolean, indeterminate: boolean) {
       console.log(label, checked, indeterminate);
+    }
+
+    showData (data: any) {
+      console.log(data);
     }
 
     created (): void {
