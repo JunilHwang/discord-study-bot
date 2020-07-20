@@ -6,17 +6,12 @@
     </p>
     <ul class="clearFix">
       <li v-for="(repo, key) in repos" :key="repo.id">
-        <label>
-          <input type="checkbox" v-model="checked" :value="key" />
+        <label class="customRadio">
+          <input type="radio" v-model="checked" :value="key" @change="fetchHook" />
           <span v-html="repo.full_name" />
         </label>
       </li>
     </ul>
-    <el-row class="repositoryButtons">
-      <el-button size="small" type="primary" @click="fetchHooks">
-        Hook 조회
-      </el-button>
-    </el-row>
   </el-card>
 </template>
 
@@ -33,18 +28,11 @@
     @githubStore.State repos!: GithubTinyRepository[];
     @githubStore.Action FETCH_HOOKS!: ActionMethod;
 
-    private checked: number[] = [];
+    private checked: number = -1;
 
-    private get checkedRepos (): GithubTinyRepository[] {
-      return this.checked.map(key => this.repos[key]);
-    }
-
-    public fetchHooks (): void {
-      if (this.checked.length === 0) {
-        this.$message.warning('한 개 이상의 Repository를 선택해주세요.');
-        return;
-      }
-      this.FETCH_HOOKS(this.checkedRepos);
+    public fetchHook (): void {
+      const {repos, checked} = this;
+      this.FETCH_HOOKS([repos[checked]]);
     }
   }
 </script>
@@ -65,23 +53,13 @@
 
   li {
     float: left;
-    width: 50%;
     line-height: 1;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    margin-right: 5px;
   }
+
   strong {
     color: #06F;
-  }
-  label {
-    cursor: pointer;
-    display: block;
-    span {
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 5px;
-      position: relative;
-      top: -1px;
-    }
   }
 </style>
 

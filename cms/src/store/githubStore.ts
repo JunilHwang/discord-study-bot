@@ -17,7 +17,11 @@ export class githubStore extends VuexModule {
   @Mutation
   public SET_HOOKS (hooks: GithubHook[]) {
     this.hooks = hooks;
-    console.log(this.hooks);
+  }
+
+  get selectedHook (): GithubHook|null {
+    if (this.hooks.length === 0) return null;
+    return this.hooks[0];
   }
 
   @Action({ commit: 'SET_REPOS' })

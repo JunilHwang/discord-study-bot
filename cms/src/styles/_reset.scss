@@ -43,3 +43,24 @@ h1 {
     clear: both;
   }
 }
+
+.customRadio {
+  cursor: pointer;
+  display: block;
+  input {
+    display: none;
+    &:checked {
+      + span {
+        background: #09F;
+        border-color: #09F;
+        color: #FFF;
+      }
+    }
+  }
+  span {
+    display: block;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    padding: 7px 10px;
+  }
+}
