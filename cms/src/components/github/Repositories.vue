@@ -13,7 +13,7 @@
       </li>
     </ul>
     <el-row class="repositoryButtons">
-      <el-button size="small" type="primary" @click="showChecked">
+      <el-button size="small" type="primary" @click="fetchHooks">
         Hook 조회
       </el-button>
     </el-row>
@@ -24,12 +24,14 @@
   import {Component, Vue} from 'vue-property-decorator';
   import {GithubTinyRepository} from "domain/src";
   import {namespace} from "vuex-class";
+  import {ActionMethod} from "vuex";
 
   const githubStore = namespace('githubStore');
 
   @Component
   export default class Hooks extends Vue {
     @githubStore.State repos!: GithubTinyRepository[];
+    @githubStore.Action FETCH_HOOKS!: ActionMethod;
 
     private checked: number[] = [];
 
@@ -37,8 +39,12 @@
       return this.checked.map(key => this.repos[key]);
     }
 
-    public showChecked () {
-      console.log(this.checkedRepos);
+    public fetchHooks (): void {
+      if (this.checked.length === 0) {
+        this.$message.warning('한 개 이상의 Repository를 선택해주세요.');
+        return;
+      }
+      this.FETCH_HOOKS(this.checkedRepos);
     }
   }
 </script>

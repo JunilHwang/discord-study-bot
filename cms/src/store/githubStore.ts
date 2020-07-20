@@ -11,12 +11,13 @@ export class githubStore extends VuexModule {
 
   @Mutation
   public SET_REPOS (repos: GithubTinyRepository[]) {
-    this.repos = repos
+    this.repos = repos;
   }
 
   @Mutation
   public SET_HOOKS (hooks: GithubHook[]) {
-    this.hooks = hooks
+    this.hooks = hooks;
+    console.log(this.hooks);
   }
 
   @Action({ commit: 'SET_REPOS' })
