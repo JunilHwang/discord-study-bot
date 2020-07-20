@@ -35,3 +35,11 @@ h1 {
   border-bottom: 1px solid #ddd;
   margin-bottom: 20px;
 }
+
+.clearFix {
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
