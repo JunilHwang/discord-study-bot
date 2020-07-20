@@ -1,0 +1,1 @@
+export const Repositories = () => import('./Repositories.vue');
