@@ -2,7 +2,7 @@
   <div class="sidebar">
     <ul>
       <li>
-        <router-link to="/hooks" class="sidebarLink">
+        <router-link to="/github" class="sidebarLink">
           <span class="middle" />
           <i class="el-icon-s-tools" />
         </router-link>

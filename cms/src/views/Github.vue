@@ -7,13 +7,18 @@
         <strong v-html="repos.length + '개'" />의 Repository가 있습니다.
       </p>
       <ul class="clearFix">
-        <li v-for="repo in repos" :key="repo.id">
+        <li v-for="(repo, key) in repos" :key="repo.id">
           <label>
-            <input type="checkbox" />
-            <span>{{ repo.full_name }}</span>
+            <input type="checkbox" v-model="data" :value="key" />
+            <span v-html="repo.full_name" />
           </label>
         </li>
       </ul>
+      <el-row class="repositoryButtons">
+        <el-button size="small" type="primary" @click="showChecked">
+          Hook 조회
+        </el-button>
+      </el-row>
     </el-card>
   </section>
 </template>
@@ -33,6 +38,16 @@
     @userStore.Getter id!: string;
     @githubStore.Action FETCH_REPOS!: ActionMethod;
 
+    private data: number[] = [];
+
+    private get checkedRepos (): GithubTinyRepository[] {
+      return this.data.map(key => this.repos[key]);
+    }
+
+    public showChecked () {
+      console.log(this.checkedRepos);
+    }
+
     created (): void {
       this.FETCH_REPOS(this.id);
     }
@@ -40,10 +55,19 @@
 </script>
 
 <style lang="scss" scoped>
-  .repositoryCount {
-    margin-bottom: 20px;
-    font-size: 17px;
+  .repository {
+
+    &Count {
+      margin-bottom: 20px;
+      font-size: 17px;
+    }
+
+    &Buttons {
+      margin-top: 20px;
+    }
+
   }
+
   li {
     float: left;
     width: 50%;
