@@ -4,10 +4,11 @@
     <el-card>
       <h2 slot="header">Github Repository 목록</h2>
       <el-tree
+        ref="$tree"
         :data="reposTree"
         :props="{ label: 'label' }"
         @check-change="changeChecked"
-        @node-click="showData"
+        node-key="id"
         show-checkbox />
     </el-card>
   </section>
@@ -15,7 +16,7 @@
 
 <script lang="ts">
   import {Component, Vue} from 'vue-property-decorator'
-  import {GithubTinyRepository, GithubUser} from "domain/src"
+  import {GithubTinyRepository} from "domain/src"
   import {namespace} from "vuex-class"
   import {ActionMethod} from "vuex";
 
@@ -36,10 +37,8 @@
 
     changeChecked ({ label }: { [k: string]: string }, checked: boolean, indeterminate: boolean) {
       console.log(label, checked, indeterminate);
-    }
-
-    showData (data: any) {
-      console.log(data);
+      const $tree: any = this.$refs.$tree;
+      console.log($tree.getCheckedNodes());
     }
 
     created (): void {
