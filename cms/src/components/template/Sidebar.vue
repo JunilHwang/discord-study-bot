@@ -2,28 +2,36 @@
   <div class="sidebar">
     <ul>
       <li>
-        <router-link to="/github" class="sidebarLink">
-          <span class="middle" />
-          <i class="el-icon-s-tools" />
-        </router-link>
+        <el-tooltip class="item" effect="dark" content="Github Hook 관리" placement="right-start">
+          <router-link to="/github" class="sidebarLink">
+            <span class="middle" />
+            <i class="el-icon-s-tools" />
+          </router-link>
+        </el-tooltip>
       </li>
       <li>
-        <router-link to="/channels" class="sidebarLink">
-          <span class="middle" />
-          <i class="el-icon-paperclip" />
-        </router-link>
+        <el-tooltip class="item" effect="dark" content="Discord Channel 관리" placement="right-start">
+          <router-link to="/channels" class="sidebarLink">
+            <span class="middle" />
+            <i class="el-icon-paperclip" />
+          </router-link>
+        </el-tooltip>
       </li>
       <li>
-        <router-link to="/messages" class="sidebarLink">
-          <span class="middle" />
-          <i class="el-icon-message" />
-        </router-link>
+        <el-tooltip class="item" effect="dark" content="Hook 메세지 템플릿 설정" placement="right-start">
+          <router-link to="/messages" class="sidebarLink">
+            <span class="middle" />
+            <i class="el-icon-message" />
+          </router-link>
+        </el-tooltip>
       </li>
       <li>
-        <a href="#" @click.prevent="logout" class="sidebarLink">
-          <span class="middle" />
-          <i class="el-icon-circle-close" />
-        </a>
+        <el-tooltip class="item" effect="dark" content="로그아웃" placement="right-start">
+          <a href="#" @click.prevent="logout" class="sidebarLink">
+            <span class="middle" />
+            <i class="el-icon-circle-close" />
+          </a>
+        </el-tooltip>
       </li>
     </ul>
   </div>
