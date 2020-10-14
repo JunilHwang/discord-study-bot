@@ -11,7 +11,7 @@ export class GithubHookService {
     @Inject('DiscordService') private readonly discordService: DiscordService
   ) {}
 
-  public async selectHookType (type: string, body: any): Promise<void> {
+  public async selectHookType (type: string, channel: string, body: any): Promise<void> {
     const types: { [k: string]: string } = {
       'push': 'createPushMessage',
       'pull_request': 'createPRMessage',
@@ -31,7 +31,7 @@ export class GithubHookService {
     }
 
     try {
-      await this.discordService.sendMessage(GithubHookTemplate[method](body) + '\n');
+      await this.discordService.sendMessage(channel, GithubHookTemplate[method](body) + '\n');
     } catch (e) {
       console.error('HookService.selectHookType()', e);
       throw 'selectHookType';

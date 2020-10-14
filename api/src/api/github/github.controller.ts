@@ -26,11 +26,11 @@ export class GithubController {
     return this.githubFacade.getOrgs({ token, id });
   }
 
-  @Post('/hook/payload')
+  @Post('/hook/payload/:channel')
   @HttpCode(HttpStatus.NO_CONTENT)
-  public createMessage (@Req() request: Request): Promise<void> {
+  public createMessage (@Req() request: Request, @Param('channel') channel: string): Promise<void> {
     const eventType: string = request.headers['x-github-event'] as string;
-    return this.githubFacade.sendHookMessage(eventType, request.body);
+    return this.githubFacade.sendHookMessage(eventType, channel, request.body);
   }
 
   @Post('/auth')

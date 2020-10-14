@@ -1,9 +1,9 @@
-import {token, channel} from './discord.secret';
+import {token} from './discord.secret';
 import $http, {AxiosResponse} from 'axios';
 import {Injectable} from "@nestjs/common";
 
 const DISCORD_API_URL = 'https://discord.com/api/v6';
-const channelURL: string = DISCORD_API_URL + '/channels/' + channel;
+const channelURL: string = DISCORD_API_URL + '/channels';
 const headers: { [k: string]: string } = {
   'Authorization': `Bot ${token}`
 };
@@ -11,10 +11,10 @@ const headers: { [k: string]: string } = {
 @Injectable()
 export class DiscordService {
 
-  public sendMessage (content: string): Promise<AxiosResponse|null> {
+  public sendMessage (channel: string, content: string): Promise<AxiosResponse|null> {
     try {
       const requestBody = {content, tts: false};
-      const url = `${channelURL}/messages`;
+      const url = `${channelURL}/${channel}/messages`;
       return $http.post(url, requestBody, { headers })
                   .catch(e => { throw e });
     } catch (e) {

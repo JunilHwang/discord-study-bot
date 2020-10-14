@@ -20,9 +20,9 @@ export class GithubFacade {
     @Inject('GithubHookService') private readonly githubHookService: GithubHookService,
   ) {}
 
-  public async sendHookMessage (type: string, body: any): Promise<void> {
+  public async sendHookMessage (type: string, channel: string, body: any): Promise<void> {
      try {
-       await this.githubHookService.selectHookType(type, body);
+       await this.githubHookService.selectHookType(type, channel, body);
      } catch (e) {
        if (e !== 'selectHookType') {
          console.error('GithubHookService.sendHookMessage()', e);
