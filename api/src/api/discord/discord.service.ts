@@ -1,9 +1,9 @@
-import {token} from './discord.secret';
+import {token, channel} from './discord.secret';
 import $http, {AxiosResponse} from 'axios';
 import {Injectable} from "@nestjs/common";
 
 const DISCORD_API_URL = 'https://discord.com/api/v6';
-const channelURL: string = DISCORD_API_URL + '/channels/728575145236758558';
+const channelURL: string = DISCORD_API_URL + '/channels/' + channel;
 const headers: { [k: string]: string } = {
   'Authorization': `Bot ${token}`
 };
